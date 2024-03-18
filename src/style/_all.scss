@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+    outline: none;
+}
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root {
+    --web-color: rgb(64, 138, 53);
+    --web-color-bold: rgb(67, 220, 45);
+    --grey: #757575; 
+}

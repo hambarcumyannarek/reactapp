@@ -1,0 +1,214 @@
+@import './all';
+
+
+.regsection {
+    width: 100%;
+    height: 100vh;
+    background-image: url("http://smarttv.xtream.cloud/assets/images/background.png");
+    background-size: cover;
+    @include center();
+    padding: 100px 20px;
+    
+    .container {
+        max-width: 1150px;
+        width: 100%;
+        display: grid;
+        grid-gap: 80px;
+        grid-template-columns: 1.2fr 1fr;
+
+        .content {
+            h2, h3, p {
+                color: var(--grey);
+            }
+
+            h2 {
+                font-size: 1.8em
+            }
+
+            h3 {
+                font-size: 1.7em
+            }
+
+            p {
+                font-size: 1.3em;
+                font-weight: bold;
+
+                span {
+                    color: var(--web-color-bold)
+                }
+            }
+
+            .title {
+                @include center();
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .formBox {
+            @include center();
+            flex-direction: column;
+            gap: 20px;
+            background: rgba(255,255,255, .03);
+            opacity: 0.9;
+            border-radius: 15px;
+            border: 1px solid #3b3b3c;
+            padding: 40px 60px;
+
+            .logo {
+                @include center();
+                max-width: 100px;
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                }
+            }
+
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .inputs {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    input {
+                        padding: 14px 20px;
+                        border-radius: 5px;
+                        border: 2px solid var(--grey);
+                        background: #202020;
+                        font-size: 1.1em;
+                        color: #fff;
+                        transition: .5s;
+
+                        &.active {
+                            border: 2px solid var(--web-color-bold);
+                        }
+                    }
+                }
+
+                .checkbox {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    input {
+                        display: none;
+                        visibility: hidden;
+                    }
+
+                      .drow {
+                        display: inline;
+                        width: 30px;
+                        height: 30px;
+                        border: 2px solid var(--grey);
+                        border-radius: 5px;
+                        @include center();
+                        transition: .3s;
+
+                        i {
+                            font-size: 1em;
+                            color: var(--grey);
+                            opacity: 0;
+                            transform: scale(0);
+                            transition: .3s;
+                        }
+                      }
+
+                      &:hover, &.active {
+                        .drow {
+                            border: 2px solid #fff;
+                        }
+                        span {
+                            color: #fff;
+                        }
+                    }
+
+                    &.checked {
+                        .drow {
+                            border: 2px solid #fff;
+                            i {
+                                opacity: 1;
+                                transform: scale(1);
+                                color: #fff;
+                            }
+                        }
+                        span {
+                            color: #fff;
+                        }
+                    }
+                      
+
+                    span {
+                        font-size: 1.2em;
+                        color: var(--grey);
+                        transition: .3s;
+                    }
+                }
+
+                button {
+                    padding: 14px 20px;
+                    border: 3px solid var(--web-color-bold);
+                    background: var(--web-color);
+                    color: #fff;
+                    font-size: 1.2em;
+                    border-radius: 15px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: .3s;
+
+                    &.active {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+
+            .language {
+                width: 100%;
+                @include center();
+
+                .btn {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    flex-flow: row nowrap;
+                    padding: 5px 15px;
+                    border-radius: 5px;
+                    border: 2px solid transparent;
+                    transition: .5s;
+
+                    &:hover, &.active {
+                        border: 2px solid var(--web-color-bold);
+                    }
+
+                    img {
+                        width: 25px;
+                        background-size: cover;
+                    }
+
+                    span {
+                        font-size: 1.1em;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .regsection {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+}

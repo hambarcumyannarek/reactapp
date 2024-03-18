@@ -1,0 +1,199 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: sans-serif;
+  outline: none;
+}
+
+:root {
+  --web-color: rgb(64, 138, 53);
+  --web-color-bold: rgb(67, 220, 45);
+  --grey: #757575;
+}
+
+.regsection {
+  width: 100%;
+  height: 100vh;
+  background-image: url("http://smarttv.xtream.cloud/assets/images/background.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+}
+.regsection .container {
+  max-width: 1150px;
+  width: 100%;
+  display: grid;
+  grid-gap: 80px;
+  grid-template-columns: 1.2fr 1fr;
+}
+.regsection .container .content h2, .regsection .container .content h3, .regsection .container .content p {
+  color: var(--grey);
+}
+.regsection .container .content h2 {
+  font-size: 1.8em;
+}
+.regsection .container .content h3 {
+  font-size: 1.7em;
+}
+.regsection .container .content p {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.regsection .container .content p span {
+  color: var(--web-color-bold);
+}
+.regsection .container .content .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+.regsection .container .formBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  opacity: 0.9;
+  border-radius: 15px;
+  border: 1px solid #3b3b3c;
+  padding: 40px 60px;
+}
+.regsection .container .formBox .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100px;
+  width: 100%;
+}
+.regsection .container .formBox .logo img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.regsection .container .formBox form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.regsection .container .formBox form .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.regsection .container .formBox form .inputs input {
+  padding: 14px 20px;
+  border-radius: 5px;
+  border: 2px solid var(--grey);
+  background: #202020;
+  font-size: 1.1em;
+  color: #fff;
+  transition: 0.5s;
+}
+.regsection .container .formBox form .inputs input.active {
+  border: 2px solid var(--web-color-bold);
+}
+.regsection .container .formBox form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.regsection .container .formBox form .checkbox input {
+  display: none;
+  visibility: hidden;
+}
+.regsection .container .formBox form .checkbox .drow {
+  display: inline;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--grey);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.regsection .container .formBox form .checkbox .drow i {
+  font-size: 1em;
+  color: var(--grey);
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.3s;
+}
+.regsection .container .formBox form .checkbox:hover .drow, .regsection .container .formBox form .checkbox.active .drow {
+  border: 2px solid #fff;
+}
+.regsection .container .formBox form .checkbox:hover span, .regsection .container .formBox form .checkbox.active span {
+  color: #fff;
+}
+.regsection .container .formBox form .checkbox.checked .drow {
+  border: 2px solid #fff;
+}
+.regsection .container .formBox form .checkbox.checked .drow i {
+  opacity: 1;
+  transform: scale(1);
+  color: #fff;
+}
+.regsection .container .formBox form .checkbox.checked span {
+  color: #fff;
+}
+.regsection .container .formBox form .checkbox span {
+  font-size: 1.2em;
+  color: var(--grey);
+  transition: 0.3s;
+}
+.regsection .container .formBox form button {
+  padding: 14px 20px;
+  border: 3px solid var(--web-color-bold);
+  background: var(--web-color);
+  color: #fff;
+  font-size: 1.2em;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.regsection .container .formBox form button.active {
+  transform: scale(1.05);
+}
+.regsection .container .formBox .language {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.regsection .container .formBox .language .btn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-flow: row nowrap;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: 0.5s;
+}
+.regsection .container .formBox .language .btn:hover, .regsection .container .formBox .language .btn.active {
+  border: 2px solid var(--web-color-bold);
+}
+.regsection .container .formBox .language .btn img {
+  width: 25px;
+  background-size: cover;
+}
+.regsection .container .formBox .language .btn span {
+  font-size: 1.1em;
+  color: #fff;
+}
+
+@media screen and (max-width: 700px) {
+  .regsection .container {
+    grid-template-columns: 1fr;
+  }
+}/*# sourceMappingURL=login.css.map */
