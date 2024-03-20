@@ -1,4 +1,6 @@
 @import './all';
+@import './language';
+@import './keyBoard';
 
 
 .regsection {
@@ -7,13 +9,13 @@
     background-image: url("http://smarttv.xtream.cloud/assets/images/background.png");
     background-size: cover;
     @include center();
-    padding: 100px 20px;
+    padding: 0px 20px;
     
     .container {
         max-width: 1150px;
         width: 100%;
         display: grid;
-        grid-gap: 80px;
+        grid-column-gap: 80px;
         grid-template-columns: 1.2fr 1fr;
 
         .content {
@@ -66,6 +68,13 @@
                     height: 100%;
                     background-size: cover;
                 }
+            }
+
+            .usefullInput {
+                position: absolute;
+                z-index: -1;
+                opacity: 0;
+                left: -100%;
             }
 
             form {
@@ -155,7 +164,7 @@
 
                 button {
                     padding: 14px 20px;
-                    border: 3px solid var(--web-color-bold);
+                    border: 3px solid transparent;
                     background: var(--web-color);
                     color: #fff;
                     font-size: 1.2em;
@@ -165,12 +174,13 @@
                     transition: .3s;
 
                     &.active {
+                        border: 3px solid var(--web-color-bold);
                         transform: scale(1.05);
                     }
                 }
             }
 
-            .language {
+            .languageBtn {
                 width: 100%;
                 @include center();
 
@@ -179,13 +189,13 @@
                     gap: 10px;
                     align-items: center;
                     flex-flow: row nowrap;
-                    padding: 5px 15px;
+                    padding: 8px 15px;
                     border-radius: 5px;
-                    border: 2px solid transparent;
+                    border: 3px solid transparent;
                     transition: .5s;
 
-                    &:hover, &.active {
-                        border: 2px solid var(--web-color-bold);
+                    &.active {
+                        border: 3px solid var(--web-color-bold);
                     }
 
                     img {
@@ -194,7 +204,8 @@
                     }
 
                     span {
-                        font-size: 1.1em;
+                        font-size: 1.3em;
+                        font-weight: bold;
                         color: #fff;
                     }
                 }
@@ -205,7 +216,7 @@
 
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     .regsection {
         .container {
             grid-template-columns: 1fr;

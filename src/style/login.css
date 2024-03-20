@@ -13,6 +13,165 @@
   --grey: #757575;
 }
 
+.language {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+.language.active {
+  opacity: 1;
+  visibility: visible;
+}
+.language.active .languageContainer {
+  transform: scale(1);
+  filter: blur(0px);
+}
+.languageContainer {
+  max-width: 650px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  background: #222;
+  padding: 60px;
+  transform: scale(0);
+  filter: blur(10px);
+  transition: 0.3s 0.2s;
+}
+.languageContainer .usefullInput {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  left: -100%;
+}
+.languageContainer h2 {
+  font-size: 2em;
+  color: #fff;
+}
+.languageContainer .cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.languageContainer .cards .card {
+  position: relative;
+  width: 100%;
+  padding: 12px 60px;
+  border-radius: 15px;
+  background: #111;
+  border: 3px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  transition: 0.3s;
+}
+.languageContainer .cards .card .checkIcon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1.3em;
+}
+.languageContainer .cards .card.active {
+  border: 3px solid var(--web-color-bold);
+}
+.languageContainer .cards .card h4 {
+  font-size: 1.3em;
+  color: #fff;
+}
+.languageContainer .cards .card img {
+  width: 55px;
+}
+
+.clamviaturaSection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+.clamviaturaSection .usefullInput {
+  position: absolute;
+  opacity: 0;
+  left: -100%;
+  top: -100%;
+}
+.clamviaturaSection .clamviatura {
+  max-width: 900px;
+  width: 100%;
+  position: fixed;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  background: #060606;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  visibility: hidden;
+  transition-duration: 0.5s;
+}
+.clamviaturaSection .clamviatura.active {
+  visibility: visible;
+  bottom: 20px;
+}
+.clamviaturaSection .clamviatura .column {
+  gap: 8px;
+}
+.clamviaturaSection .clamviatura .column:nth-child(1) {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+}
+.clamviaturaSection .clamviatura .column:nth-child(2) {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr) 2fr;
+}
+.clamviaturaSection .clamviatura .column:nth-child(3) {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr) 2fr 1fr;
+}
+.clamviaturaSection .clamviatura .column:nth-child(4) {
+  display: grid;
+  grid-template-columns: 1fr 11fr 1fr;
+}
+.clamviaturaSection .clamviatura .column .row {
+  padding: 17px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #111;
+}
+.clamviaturaSection .clamviatura .column .row span {
+  color: #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.clamviaturaSection .clamviatura .column .row.active {
+  background: var(--web-color-bold);
+  box-shadow: 0 0 5px 1px rgba(67, 220, 45, 0.8);
+}
+
 .regsection {
   width: 100%;
   height: 100vh;
@@ -21,13 +180,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 20px;
+  padding: 0px 20px;
 }
 .regsection .container {
   max-width: 1150px;
   width: 100%;
   display: grid;
-  grid-gap: 80px;
+  grid-column-gap: 80px;
   grid-template-columns: 1.2fr 1fr;
 }
 .regsection .container .content h2, .regsection .container .content h3, .regsection .container .content p {
@@ -77,6 +236,12 @@
   width: 100%;
   height: 100%;
   background-size: cover;
+}
+.regsection .container .formBox .usefullInput {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  left: -100%;
 }
 .regsection .container .formBox form {
   width: 100%;
@@ -152,7 +317,7 @@
 }
 .regsection .container .formBox form button {
   padding: 14px 20px;
-  border: 3px solid var(--web-color-bold);
+  border: 3px solid transparent;
   background: var(--web-color);
   color: #fff;
   font-size: 1.2em;
@@ -162,37 +327,39 @@
   transition: 0.3s;
 }
 .regsection .container .formBox form button.active {
+  border: 3px solid var(--web-color-bold);
   transform: scale(1.05);
 }
-.regsection .container .formBox .language {
+.regsection .container .formBox .languageBtn {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.regsection .container .formBox .language .btn {
+.regsection .container .formBox .languageBtn .btn {
   display: flex;
   gap: 10px;
   align-items: center;
   flex-flow: row nowrap;
-  padding: 5px 15px;
+  padding: 8px 15px;
   border-radius: 5px;
-  border: 2px solid transparent;
+  border: 3px solid transparent;
   transition: 0.5s;
 }
-.regsection .container .formBox .language .btn:hover, .regsection .container .formBox .language .btn.active {
-  border: 2px solid var(--web-color-bold);
+.regsection .container .formBox .languageBtn .btn.active {
+  border: 3px solid var(--web-color-bold);
 }
-.regsection .container .formBox .language .btn img {
+.regsection .container .formBox .languageBtn .btn img {
   width: 25px;
   background-size: cover;
 }
-.regsection .container .formBox .language .btn span {
-  font-size: 1.1em;
+.regsection .container .formBox .languageBtn .btn span {
+  font-size: 1.3em;
+  font-weight: bold;
   color: #fff;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .regsection .container {
     grid-template-columns: 1fr;
   }
