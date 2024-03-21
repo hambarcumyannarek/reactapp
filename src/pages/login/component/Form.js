@@ -9,7 +9,6 @@ export function Form({isOpen, toggleLang, chakedItem, againOpen, openKeyBoardF, 
     const subBtn = useRef();
     const lang = useRef();
     const form = useRef();
-    const usefullInput2 = useRef();
     let inputElements = [];
 
     useEffect(() => {
@@ -32,16 +31,18 @@ export function Form({isOpen, toggleLang, chakedItem, againOpen, openKeyBoardF, 
     }, [returnInputText.child, returnInputText.txt, returnInputText.done]);
 
     function languageBtnF() {
-        usefullInput2.current.type = !active ? 'hidden' : 'text';
+        // usefullInput2.current.type = !active ? 'hidden' : 'text';
+        window.removeEventListener('keyup', keyupfunc);
         toggleLang();
         againOpen(+lang.current.getAttribute('data-id'));
     }
     function openKeyBoard(obj) {
-        // usefullInput2.current.type = 'hidden';
+        window.removeEventListener('keyup', keyupfunc);
         openKeyBoardF(obj);
     }
 
     const keyupfunc = useCallback((e) => {
+        console.log('e')
         if(e.code === 'ArrowDown' && inputHover < inputElements.length-1){
             setInputHover(inputHover + 1);
         } else if (e.code === 'ArrowUp' && inputHover > 0) {
@@ -70,16 +71,17 @@ export function Form({isOpen, toggleLang, chakedItem, againOpen, openKeyBoardF, 
                 break;
             }
         }
-    }, [inputHover])
+    }, [inputHover]);
+
+    useEffect(() => {
+        if(!isOpen && !isKeyBoardOpen) {
+            window.addEventListener('keyup', keyupfunc);
+            return () => window.removeEventListener('keyup', keyupfunc);
+        }
+    }, [inputHover, isOpen, isKeyBoardOpen])
 
     useEffect(() => {
         inputElements = [...inputs.current.children, checkbox.current, subBtn.current, lang.current];
-        usefullInput2.current.type = !isOpen && !isKeyBoardOpen ? 'text' : 'hidden';
-        usefullInput2.current.focus();
-        window.addEventListener('click', () => {
-            usefullInput2.current.focus();
-        })
-        // document.addEventListener('keyup', keyupfunc); 
         for(let i = 0; i < inputElements.length; i++) {
             inputElements[i].classList.remove('active');
         }
@@ -99,7 +101,6 @@ export function Form({isOpen, toggleLang, chakedItem, againOpen, openKeyBoardF, 
             <div className="logo">
                 <img src="http://smarttv.xtream.cloud/assets/images/logo.png" alt="..." />
             </div>
-            <input type="text" className="usefullInput" readOnly ref={usefullInput2} onKeyUp={keyupfunc} />
 
             <form ref={form} autoComplete="off" onSubmit={e => {
                 e.preventDefault();

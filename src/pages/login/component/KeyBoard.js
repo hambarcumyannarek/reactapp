@@ -134,7 +134,6 @@ export function KeyBoard({isActive, defaultValue, returnedValue, closeKeyBoard})
     const [state, dispetch] = myReducer(reducer, cMatric);
     const [value, setValue] = useState(defaultValue);
     const [isUpper, setIsUpper] = useState(false);
-    const usefullInput3 = useRef();
     function recursi(element) {
         if(element.tagName === 'DIV') {
             return element;
@@ -167,7 +166,7 @@ export function KeyBoard({isActive, defaultValue, returnedValue, closeKeyBoard})
     }, [isUpper]);
 
     function closeKB(){
-        usefullInput3.current.type = 'hidden';
+        window.removeEventListener('keyup', moveKeys);
         setTimeout(() => {
             closeKeyBoard();
             setValue(e => {
@@ -178,7 +177,7 @@ export function KeyBoard({isActive, defaultValue, returnedValue, closeKeyBoard})
 
     async function keyBoardClickable() {
         if(state[findActivedLocation.ci][findActivedLocation.ri].charName === 'done') {
-            usefullInput3.current.type = 'hidden';
+            window.removeEventListener('keyup', moveKeys);
             setValue(e => {
                 return {...e, txt: e.txt, done: true};
             });
@@ -247,14 +246,12 @@ export function KeyBoard({isActive, defaultValue, returnedValue, closeKeyBoard})
         
     }
     useEffect(() => {
-        usefullInput3.current.focus();
-    }, []);
+        window.addEventListener('keyup', moveKeys);
+        return () => window.removeEventListener('keyup', moveKeys);
+    }, [findActivedLocation]);
 
     return (
-        <div className="clamviaturaSection" onClick={(e) => {
-            usefullInput3.current.focus()
-        }}>
-            <input type="text" className="usefullInput" readOnly ref={usefullInput3} onKeyDown={moveKeys} />
+        <div className="clamviaturaSection">
             <div className={`clamviatura ${isActive ? 'active' : ''}`}>
                 {state.map((column, ci) => {
                     return (

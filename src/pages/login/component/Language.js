@@ -46,7 +46,6 @@ function reducer(state, action) {
 
 export function Language({data, isOpen, closeLangD, returnCheckedData, nowChackedItem}) {
     const languages = useRef();
-    const usefullInput = useRef();
     
     const [state, dispetch] = myReducer(reducer, data.map(obj => {
         if(obj.id === nowChackedItem) {
@@ -69,11 +68,13 @@ export function Language({data, isOpen, closeLangD, returnCheckedData, nowChacke
             }
         })
         returnCheckedData(state[hoverItem]);
+        window.removeEventListener('keyup', langHover);
         closeLangD();
     }
 
     function langHover(e) {
         if(e.code === "Backspace") {
+            window.removeEventListener('keyup', langHover);
             closeLangD();
         }
         if(e.code === "ArrowDown") {
@@ -96,21 +97,18 @@ export function Language({data, isOpen, closeLangD, returnCheckedData, nowChacke
     }
     
     useEffect(() => {
-        usefullInput.current.focus();
-    }, []);
-
+        window.addEventListener('keyup', langHover);
+        return () => window.removeEventListener('keyup', langHover);
+    }, [hoverItem])
 
     return (
         <div id="lan" className={`language ${isOpen ? 'active' : ''}`} ref={languages} onClick={(e) => {
-            usefullInput.current.focus();
-
             if(e.target.id === 'lan') {
                 e.target.classList.remove('active')
                 closeLangD()
             }
         }}>
             <div className="languageContainer">
-                <input type="text" className="usefullInput" readOnly ref={usefullInput} onKeyUp={langHover} />
                 <h2>Choose language</h2>
 
                 <div className="cards">
