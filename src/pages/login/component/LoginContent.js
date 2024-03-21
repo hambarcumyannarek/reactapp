@@ -1,4 +1,4 @@
-export default function() {
+export function LoginContent() {
     return (
         <>
             <div className="content">

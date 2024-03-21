@@ -25,7 +25,10 @@
         gap: 8px;
         visibility: hidden;
         transition-duration: .5s;
+        transition: 0.5s; 
+
         &.active {
+            transition: 0.5s; 
             visibility: visible;
             bottom: 20px;
         }
@@ -51,7 +54,7 @@
             }
     
             .row {
-                padding: 17px 0;
+                padding: 15px 0;
                 @include center();
                 border-radius: 10px;
                 background: #111;
@@ -61,6 +64,10 @@
                     user-select: none;
                     font-size: 1.3em;
                     font-weight: bold;
+
+                    i {
+                        font-size: 1.31em;
+                    }
                 }
                 &.active {
                     background: var(--web-color-bold);

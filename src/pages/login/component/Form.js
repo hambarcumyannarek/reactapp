@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function({isOpen, toggleLang, chakedItem, againOpen, openKeyBoardF, isKeyBoardOpen, returnInputText}) {
+export function Form({isOpen, toggleLang, chakedItem, againOpen, openKeyBoardF, isKeyBoardOpen, returnInputText}) {
     const[active, setActive] = useState(false);
     const[inputHover, setInputHover] = useState(0);
   
@@ -8,14 +8,28 @@ export default function({isOpen, toggleLang, chakedItem, againOpen, openKeyBoard
     const checkbox = useRef();
     const subBtn = useRef();
     const lang = useRef();
+    const form = useRef();
     const usefullInput2 = useRef();
     let inputElements = [];
 
     useEffect(() => {
         if(returnInputText.child !== undefined) {
-            inputs.current.children[returnInputText.child].value = returnInputText.txt;
+            console.log(returnInputText)
+            if(returnInputText.done) {
+                setTimeout(() => {
+                    const nextInputIndex = returnInputText.child+1;
+                    inputs.current.children[returnInputText.child].value = returnInputText.txt;
+                    if(inputs.current.children[nextInputIndex]) {
+                        console.log(nextInputIndex)
+                        openKeyBoard({txt: inputs.current.children[nextInputIndex].value, child: nextInputIndex});
+                    }
+                    setInputHover(nextInputIndex);
+                }, 500)
+            } else {
+                inputs.current.children[returnInputText.child].value = returnInputText.txt;
+            }
         }
-    }, [returnInputText.child, returnInputText.txt]);
+    }, [returnInputText.child, returnInputText.txt, returnInputText.done]);
 
     function languageBtnF() {
         usefullInput2.current.type = !active ? 'hidden' : 'text';
@@ -50,6 +64,10 @@ export default function({isOpen, toggleLang, chakedItem, againOpen, openKeyBoard
                 case 'input3': 
                     openKeyBoard({txt: inputs.current.children[2].value, child: 2});
                 break;
+                case 'login': 
+                    // console.log('ddfdf');
+                    // form.current.submit();
+                break;
             }
         }
     }, [inputHover])
@@ -68,7 +86,7 @@ export default function({isOpen, toggleLang, chakedItem, againOpen, openKeyBoard
 
         inputElements[inputHover].classList.add('active');
         // return () => document.removeEventListener('keyup', keyupfunc); 
-    }, [inputHover, toggleLang])
+    }, [inputHover, toggleLang, active])
 
 
     function mosuesEnterInput(e) {
@@ -83,7 +101,10 @@ export default function({isOpen, toggleLang, chakedItem, againOpen, openKeyBoard
             </div>
             <input type="text" className="usefullInput" readOnly ref={usefullInput2} onKeyUp={keyupfunc} />
 
-            <form autoComplete="off" onSubmit={e => e.preventDefault()}>
+            <form ref={form} autoComplete="off" onSubmit={e => {
+                e.preventDefault();
+                // console.log('dfdf')
+            }}>
 
                 <div className="inputs" ref={inputs}>
                     <input type="text" data-num="0" placeholder="Provider" id="input1" onMouseEnter={mosuesEnterInput} onClick={(e) => openKeyBoard({txt: e.target.value, child: 0})} name="provider" readOnly />

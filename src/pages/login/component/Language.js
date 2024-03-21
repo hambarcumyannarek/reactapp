@@ -1,56 +1,55 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import myReducer from "../../../hooks/myReducer";
 
 function reducer(state, action) {
     switch(action.type) {
         case 'hover':
             return state.map(obj => {
-                if(obj.id == action.payload.id) {
+                if(obj.id === action.payload.id) {
                     return {...obj, hover: true}
                 }
                 return {...obj, hover: false};
             })
-        break;
+
         case 'down':
             if(action.payload.index + 1 !== state.length) {   
                 return state.map((obj, i) => {
-                    if(action.payload.index + 1 == i) {
+                    if(action.payload.index + 1 === i) {
                         return {...obj, hover: true}
                     }
                     return {...obj, hover: false};          
                 })
             }
             return state;
-        break;
+
         case 'up':
             if(action.payload.index - 1 >= 0) {   
                 return state.map((obj, i) => {
-                    if(action.payload.index - 1 == i) {
+                    if(action.payload.index - 1 === i) {
                         return {...obj, hover: true}
                     }
                     return {...obj, hover: false};          
                 })
             }
             return state;
-        break;
+            
         case 'enter':
             return state.map((obj, i) => {
-                if(action.payload.index == i) {
+                if(action.payload.index === i) {
                     return {...obj, checked: true};
                 }
                 return {...obj, checked: false};          
-            })
-        break;
+            });
     }
 
 }
 
-export default function({data, isOpen, closeLangD, returnCheckedData, nowChackedItem}) {
+export function Language({data, isOpen, closeLangD, returnCheckedData, nowChackedItem}) {
     const languages = useRef();
     const usefullInput = useRef();
     
     const [state, dispetch] = myReducer(reducer, data.map(obj => {
-        if(obj.id == nowChackedItem) {
+        if(obj.id === nowChackedItem) {
             return {...obj, hover: true,checked: true};
         }
         return {...obj, hover: false, checked: false};
@@ -74,7 +73,7 @@ export default function({data, isOpen, closeLangD, returnCheckedData, nowChacked
     }
 
     function langHover(e) {
-        if(e.code == "Backspace") {
+        if(e.code === "Backspace") {
             closeLangD();
         }
         if(e.code === "ArrowDown") {
@@ -100,11 +99,12 @@ export default function({data, isOpen, closeLangD, returnCheckedData, nowChacked
         usefullInput.current.focus();
     }, []);
 
+
     return (
         <div id="lan" className={`language ${isOpen ? 'active' : ''}`} ref={languages} onClick={(e) => {
             usefullInput.current.focus();
 
-            if(e.target.id == 'lan') {
+            if(e.target.id === 'lan') {
                 e.target.classList.remove('active')
                 closeLangD()
             }

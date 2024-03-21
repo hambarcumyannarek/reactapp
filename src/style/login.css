@@ -127,8 +127,10 @@
   gap: 8px;
   visibility: hidden;
   transition-duration: 0.5s;
+  transition: 0.5s;
 }
 .clamviaturaSection .clamviatura.active {
+  transition: 0.5s;
   visibility: visible;
   bottom: 20px;
 }
@@ -152,7 +154,7 @@
   grid-template-columns: 1fr 11fr 1fr;
 }
 .clamviaturaSection .clamviatura .column .row {
-  padding: 17px 0;
+  padding: 15px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,6 +168,9 @@
           user-select: none;
   font-size: 1.3em;
   font-weight: bold;
+}
+.clamviaturaSection .clamviatura .column .row span i {
+  font-size: 1.31em;
 }
 .clamviaturaSection .clamviatura .column .row.active {
   background: var(--web-color-bold);
@@ -293,22 +298,18 @@
   transform: scale(0);
   transition: 0.3s;
 }
-.regsection .container .formBox form .checkbox:hover .drow, .regsection .container .formBox form .checkbox.active .drow {
+.regsection .container .formBox form .checkbox.active .drow {
   border: 2px solid #fff;
 }
-.regsection .container .formBox form .checkbox:hover span, .regsection .container .formBox form .checkbox.active span {
+.regsection .container .formBox form .checkbox.active .drow i {
   color: #fff;
 }
-.regsection .container .formBox form .checkbox.checked .drow {
-  border: 2px solid #fff;
+.regsection .container .formBox form .checkbox.active span {
+  color: #fff;
 }
 .regsection .container .formBox form .checkbox.checked .drow i {
   opacity: 1;
   transform: scale(1);
-  color: #fff;
-}
-.regsection .container .formBox form .checkbox.checked span {
-  color: #fff;
 }
 .regsection .container .formBox form .checkbox span {
   font-size: 1.2em;

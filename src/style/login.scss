@@ -131,9 +131,13 @@
                         }
                       }
 
-                      &:hover, &.active {
+                    &.active {
                         .drow {
                             border: 2px solid #fff;
+                            
+                            i {
+                                color: #fff;
+                            }
                         }
                         span {
                             color: #fff;
@@ -142,15 +146,10 @@
 
                     &.checked {
                         .drow {
-                            border: 2px solid #fff;
                             i {
                                 opacity: 1;
                                 transform: scale(1);
-                                color: #fff;
                             }
-                        }
-                        span {
-                            color: #fff;
                         }
                     }
                       
